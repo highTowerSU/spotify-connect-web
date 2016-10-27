@@ -36,6 +36,25 @@ If you just want to get running, you can use a pre-built chroot with the latest 
 
 (~~Btw, the chroot is built nightly from master using Docker on a C1.~~ Manually built for now. See the [Makefile](Makefile.docker) for details.)
 
+## Install as service using a pre-built chroot
+
+Grab the latest release from [Releases](https://github.com/Fornoth/spotify-connect-web/releases)
+
+If you want to install it as a service, install a pre-built chroot with the latest version installed.
+### Installation instructions (example):
+
+    curl -O curl -OL https://github.com/Fornoth/spotify-connect-web/releases/download/0.0.3-alpha/spotify-connect-web.sh
+    chmod u+x spotify-connect-web.sh
+    # Download the current chroot (~ 180 MB)
+    sudo ./spotify-connect-web.sh install-system
+    # Copy your `spotify_appkey.key` into the app directory. (See below for information on how to get that file.)
+    sudo cp spotify_appkey.key /usr/local/lib/spotify-connect-web/usr/src/app/
+    # Run once using normal cmdline options
+    sudo /usr/local/bin/spotify-connect-web.sh --username 12345678 --password xyz123 --bitrate 320
+    # start service
+    sudo systemctl start spotify-connect
+
+
 ## Quickstart with Docker
 (You will have to use `sudo` if not logged in as root.)
 
